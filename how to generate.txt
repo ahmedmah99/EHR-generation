@@ -1,0 +1,4 @@
+1- In the main class 'generate.java' there is a variable called '_data' , change the number to the amount of EHR to generate (note that each file contains 100k data point)
+2- in the main class 'generate.java' there is a variable called 'fileName' , also change it to the location of the files (note that you need to edit the fileName in the function 
+'createFile' too for it to work properly)
+
