@@ -7,23 +7,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.SplittableRandom;
 
-public class BrainCancerGen {
+public class KidneyFailure {
 
 
     File file;
     FileWriter writer;
-    public BrainCancerGen(File file, FileWriter fileWriter){
+    public KidneyFailure(File file, FileWriter fileWriter){
         this.file = file;
         this.writer = fileWriter;
     };
 
-    public void brainCancerStartFunc() throws IOException {
+    public void kidneyStart() throws IOException {
 
-        int capacity = (Generate.gender? 388 : 388);
-        List<List<String>> allRecords = new ArrayList<List<String>>(capacity); //76 column & 37,845 row
 
-        for (int i  = 0; i < capacity; i++){
-            brainCancerPatientGen(allRecords);
+        List<List<String>> allRecords = new ArrayList<List<String>>(4138); //76 column & 37,845 row
+
+
+        for (int i  = 0; i < 4138; i++){
+            healthyPeopleGen(allRecords);
             write(allRecords.get(i),writer);
         }
     }
@@ -37,7 +38,7 @@ public class BrainCancerGen {
         writer.write(str);
     }
 
-    private void brainCancerPatientGen(List<List<String>> allRecords){
+    private void healthyPeopleGen(List<List<String>> allRecords){
         List<String> record = new ArrayList<>(79);
         String patientID = Generate.patientID + "";
         record.add(patientID);
@@ -50,22 +51,22 @@ public class BrainCancerGen {
         String gender = (Generate.gender? "Male" : "Female");
         record.add(gender);
 
-        double RBC = (Generate.gender? truncate(this.nextFloat(4.5,5.9)) : truncate(this.nextFloat(4.1,5.1)));
+        double RBC = (Generate.gender? truncate(this.nextFloat(3.5,4.4)) : truncate(this.nextFloat(3.0,4.0)));
         record.add(RBC+"");
 
         double RBCDistributionWidth = (Generate.gender? truncate(this.nextFloat(11.8,14.5)) : truncate(this.nextFloat(12.2,16.1)));
         record.add(RBCDistributionWidth+"");
 
-        double Hemoglobin_HB = (Generate.gender? truncate(this.nextFloat(14.0,17.5)) : truncate(this.nextFloat(12.3,15.3)));
+        double Hemoglobin_HB = (Generate.gender? truncate(this.nextFloat(10.0,14.0)) : truncate(this.nextFloat(9,12.3)));
         record.add(Hemoglobin_HB+"");
 
-        double HCT = (Generate.gender? truncate(this.nextFloat(41.5,50.4)) : truncate(this.nextFloat(35.9,44.6)));
+        double HCT = (Generate.gender? truncate(this.nextFloat(31.5,40.0)) : truncate(this.nextFloat(25.0,34.2)));
         record.add(HCT+"");
 
         float WBC =  this.nextInt(4500,11000);
         record.add(WBC+"");
 
-        float NEU = this.nextInt(55,75); //percentage
+        float NEU = this.nextInt(45,75); //percentage
         NEU = (float) ((NEU/100) * WBC);
         record.add(NEU+"");
 
@@ -92,28 +93,28 @@ public class BrainCancerGen {
         float PlateletDistributionWidth = truncate(this.nextFloat(8.3,56.6));
         record.add(PlateletDistributionWidth + "");
 
-        int sodium = this.nextInt(136,145);
+        int sodium = this.nextInt(120,135);
         record.add(sodium+"");
 
-        float Potassium = truncate(this.nextFloat(3.5,5.0));
+        float Potassium = truncate(this.nextFloat(1.2,3.3));
         record.add(Potassium+"");
 
-        int Chloride = this.nextInt(98,106);
+        int Chloride = this.nextInt(80,98);
         record.add(Chloride +"");
 
-        int Bicarbonate = this.nextInt(23,28);
+        int Bicarbonate = this.nextInt(10,23);
         record.add(Bicarbonate+"");
 
-        float SCLevel = (Generate.gender? truncate(this.nextFloat(0.74,1.35)) : truncate(this.nextFloat(0.59,1.04)));
+        float SCLevel = (Generate.gender? truncate(this.nextFloat(0.60,0.73)) : truncate(this.nextFloat(0.2,0.6)));
         record.add(SCLevel+"");
 
-        int GFR = this.nextInt(90,120);
+        int GFR = this.nextInt(5,54);
         record.add(GFR+"");
 
-        int BUN = this.nextInt(7,20);
+        int BUN = this.nextInt(30,51);
         record.add(BUN+"");
 
-        int ACR = (Generate.gender? this.nextInt(1,17) : this.nextInt(1,25));
+        int ACR = (Generate.gender? this.nextInt(17,23) : this.nextInt(25,31));
         record.add(ACR+"");
 
         int BNP =  this.nextInt(10,100);
@@ -130,6 +131,8 @@ public class BrainCancerGen {
 
         float hemoglobin_A1c = truncate(this.nextFloat(2.0,5.7)); //percentage
         record.add(hemoglobin_A1c+"");
+
+
 
 
         //negative =  0, postive =1
@@ -166,7 +169,7 @@ public class BrainCancerGen {
         String EbolaAntibodyTesting = "0";
         record.add(EbolaAntibodyTesting);
 
-        String LP = "1";
+        String LP = "0";
         record.add(LP);
 
         String Biopsy = "1";
@@ -176,32 +179,34 @@ public class BrainCancerGen {
 
         record.add("1"); //ct-scan
 
-        String PET_CTScan = "1";
+        String PET_CTScan = "0";
         record.add(PET_CTScan);
 
         String Bronchoscopy = "0";
         record.add(Bronchoscopy);
 
 
-        int WL = 0; //weight lose or poor appetite
+        int _Uncommonsymptoms = nextInt(1,11);
+
+        int WL = (_Uncommonsymptoms >= 9? this.nextInt(2,4) : this.nextInt(0,3));
         record.add(WL+"");
 
-        int Breathlessness = 0;
+        int Breathlessness = this.nextInt(1,6);
         record.add(Breathlessness+"");
 
-        int Fatigue = this.nextInt(2,6);
+        int Fatigue = 0;
         record.add(Fatigue+"");
 
-        int SwollenAnklesAndLegs = 0;
+        int SwollenAnklesAndLegs = this.nextInt(2,6);
         record.add(SwollenAnklesAndLegs+"");
 
-        int ItchySkin = 0;
+        int ItchySkin = this.nextInt(1,5);
         record.add(ItchySkin+"");
 
         int Fever = 0;
         record.add(Fever+"");
 
-        int Tiredness = this.nextInt(1,3);
+        int Tiredness = this.nextInt(1,6);
         record.add(Tiredness+"");
 
         int Cough = 0;
@@ -222,31 +227,31 @@ public class BrainCancerGen {
         int DryMouth = 0;
         record.add(DryMouth+"");
 
-        int BlurredVision = this.nextInt(1,6);
+        int BlurredVision = 0;
         record.add(BlurredVision+"");
 
         int SoreThroat = 0;
         record.add(SoreThroat+"");
 
-        int HeadAche = this.nextInt(2,6);
+        int HeadAche = 0;
         record.add(HeadAche+"");
 
-        int BodyAches = this.nextInt(1,3);
+        int BodyAches = 0;
         record.add(BodyAches+"");
 
-        int Insonmia = 0;
+        int Insonmia = this.nextInt(1,6);
         record.add(Insonmia+"");
 
-        int Nausea = this.nextInt(0,4);
+        int Nausea = 0;
         record.add(Nausea+"");
 
-        int Vomitting = this.nextInt(1,4);
+        int Vomitting = 0;
         record.add(Vomitting+"");
 
-        int MemoryProblems = this.nextInt(1,4);
+        int MemoryProblems = 0;
         record.add(MemoryProblems+"");
 
-        int Drowsiness = this.nextInt(1,4);
+        int Drowsiness = 0;
         record.add(Drowsiness+"");
 
         int Diarrhoea = 0;
@@ -255,7 +260,7 @@ public class BrainCancerGen {
         String BloodCouphing = "0";
         record.add(BloodCouphing);
 
-        String BloodUrine = "0";
+        String BloodUrine = (_Uncommonsymptoms >= 5? "1" : "0");
         record.add(BloodUrine);
 
         int Rash = 0;
@@ -279,8 +284,7 @@ public class BrainCancerGen {
         String LosOfTaste = "0";
         record.add(LosOfTaste);
 
-        record.add("6"); //class name - y -
-
+        record.add("1");
         //add the record to the rest of the records
         allRecords.add(record);
 

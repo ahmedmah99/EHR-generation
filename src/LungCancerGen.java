@@ -19,7 +19,7 @@ public class LungCancerGen {
 
     public void lungCancerStartFunc() throws IOException {
 
-        int capacity = (Generate.gender? 6590 : 5061);
+        int capacity = (Generate.gender? 3249 : 3249);
         List<List<String>> allRecords = new ArrayList<List<String>>(capacity); //76 column & 37,845 row
 
 
@@ -280,7 +280,7 @@ public class LungCancerGen {
         String LosOfTaste = "0";
         record.add(LosOfTaste);
 
-        record.add("2"); //class name
+        record.add("7"); //class name
 
         //add the record to the rest of the records
         allRecords.add(record);

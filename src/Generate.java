@@ -12,12 +12,14 @@ public class Generate {
     // find the ratio between all cases to see how much cases each of them to fill the 50k
     // for example, THE 100K, is the amount to be shared in this case.
     // ratio per 100k for each disease of the 5 diseases (Ebola, Brain cancer, Lung cancer, Covid, SARS) is as follows respectiveley
-    //  37.5 : 7.5 : 62.8 : 360.68 : 8.04 .. total =  476.52
-    // value of 1 part  = 209.85478049
+    //  100 : 80 : 90:  150: 70 : 37.5 : 7.5 : 62.8 : 360.68 : 8.04 .. total =  476.52 //966.52
+    // value of 1 part  = 209.85478049 //51.73
     // number of cases for each disease in the 100k population is:
     // 7,869 - 1,574 - 13,178 - 75,690 - 1,686 .. since at least 50% should be healthy. so we will divide the number of cases by 2.
     // cases in 50k will be as follows : 3935 - 787 - 6590 - 37,845 - 844 .. This is for male gender ----------
     //
+    //  Heart : kideny: Diabetes : Influenza : H1n1 : Ebola : brain c - lung c : covid : SARS
+    //  5173 : 4138 : 4656 : 7760 : 3621 : 1940 : 388 : 3249 : 18658 : 416
     // For female.
     // 37.5 : 5.3 : 49.4 : 387.76 : 8.04 .. total = 488
     // value of 1 part  = 204.91803278
@@ -28,16 +30,24 @@ public class Generate {
 
     // the number of each class wil be as follows [ 0 , 1 , 2 , 3 , 4 , 5] .. for Ebola , Brain Cancer, Lung cancer , Covid , Sars and healthy people respectively
 
-    static int _data = 1000;
+    static int _data = 10;
     static long patientID = 500000000;
     static int fileNumber = 1;
 
     //place to store the data in
-    static String fileName = "Data/emr1.txt";
+    static String location = "Data/emr";
+
+
+    static String fileName = location + "1.csv";
     static boolean gender = true; //male
     FileWriter fileWriter;
 
     File myObj;
+    HeartFailureGen heartFailureGen;
+    KidneyFailure kidneyFailure;
+    DiabetesGen diabetesGen;
+    InfluenzaGen influenzaGen;
+    H1N1Gen h1N1Gen;
     Covid19Gen covid19Gen;
     EbolaGen ebolaGen;
     BrainCancerGen brainCancerGen;
@@ -62,6 +72,11 @@ public class Generate {
 
         writer();
 
+        heartFailureGen.start();
+        kidneyFailure.kidneyStart();
+        diabetesGen.diabetesStart();
+        influenzaGen.fluStart();
+        h1N1Gen.h1n1Start();
         ebolaGen.EbolaStart();
         brainCancerGen.brainCancerStartFunc();
         lungCancerGen.lungCancerStartFunc();
@@ -89,7 +104,7 @@ public class Generate {
         }
 
         fileNumber = fileNumber+1;
-        fileName = "Data/emr"+fileNumber+".csv";
+        fileName = location + fileNumber+".csv";
 
         fileWriter = new FileWriter(myObj);
         //give the file to the generator to put in the data
@@ -197,6 +212,11 @@ public class Generate {
 
     private void defineEMRs() throws IOException {
 
+        heartFailureGen = new HeartFailureGen(myObj,fileWriter);
+        kidneyFailure = new KidneyFailure(myObj,fileWriter);
+        diabetesGen = new DiabetesGen(myObj,fileWriter);
+        influenzaGen = new InfluenzaGen(myObj, fileWriter);
+        h1N1Gen = new H1N1Gen(myObj, fileWriter);
         covid19Gen = new Covid19Gen(myObj,fileWriter);
         ebolaGen = new EbolaGen(myObj,fileWriter);
         brainCancerGen = new BrainCancerGen(myObj,fileWriter);

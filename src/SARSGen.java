@@ -19,7 +19,7 @@ public class SARSGen {
 
     public void SARSGenStartFunc() throws IOException {
 
-        int capacity = (Generate.gender? 844 : 823);
+        int capacity = (Generate.gender? 416 : 416);
         List<List<String>> allRecords = new ArrayList<List<String>>(capacity); //76 column & 37,845 row
 
         for (int i  = 0; i < capacity; i++){
@@ -282,7 +282,7 @@ public class SARSGen {
         String LosOfTaste = "0";
         record.add(LosOfTaste);
 
-        record.add("4");
+        record.add("9");
         //add the record to the rest of the records
         allRecords.add(record);
 

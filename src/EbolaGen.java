@@ -19,7 +19,7 @@ public class EbolaGen {
 
     public void EbolaStart() throws IOException {
 
-        int capacity = (Generate.gender? 3935 : 3842);
+        int capacity = (Generate.gender? 1940 : 1940);
         List<List<String>> allRecords = new ArrayList<List<String>>(capacity); //76 column & 37,845 row
 
 
@@ -286,7 +286,7 @@ public class EbolaGen {
         String LosOfTaste = "0";
         record.add(LosOfTaste);
 
-        String className = "0";
+        String className = "5";
         record.add(className);
 
         //add the record to the rest of the records

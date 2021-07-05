@@ -19,7 +19,7 @@ public class Covid19Gen {
 
     public void CovidStart() throws IOException {
 
-        int capacity = (Generate.gender? 37845 : 39729);
+        int capacity = (Generate.gender? 18658 : 18658);
         List<List<String>> allRecords = new ArrayList<List<String>>(capacity); //76 column & 37,845 row
 
         for (int i  = 0; i < capacity; i++){
@@ -286,7 +286,7 @@ public class Covid19Gen {
         String LosOfTaste = "1";
         record.add(LosOfTaste);
 
-        record.add("3");
+        record.add("8");
 
         //add the record to the rest of the records
         allRecords.add(record);

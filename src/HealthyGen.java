@@ -280,7 +280,7 @@ public class HealthyGen {
         String LosOfTaste = "0";
         record.add(LosOfTaste);
 
-        record.add("5");
+        record.add("10");
         //add the record to the rest of the records
         allRecords.add(record);
 
